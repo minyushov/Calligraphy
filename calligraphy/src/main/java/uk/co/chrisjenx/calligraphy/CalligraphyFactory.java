@@ -204,14 +204,14 @@ class CalligraphyFactory {
 
         static String BLANK = " ";
 
-        private final WeakReference<CalligraphyFactory> mCalligraphyFactory;
+        private final CalligraphyFactory mCalligraphyFactory;
         private final WeakReference<Context> mContextRef;
         private final WeakReference<Toolbar> mToolbarReference;
         private final CharSequence originalSubTitle;
 
         private ToolbarLayoutListener(final CalligraphyFactory calligraphyFactory,
                                       final Context context, Toolbar toolbar) {
-            mCalligraphyFactory = new WeakReference<>(calligraphyFactory);
+            mCalligraphyFactory = calligraphyFactory;
             mContextRef = new WeakReference<>(context);
             mToolbarReference = new WeakReference<>(toolbar);
             originalSubTitle = toolbar.getSubtitle();
@@ -222,9 +222,9 @@ class CalligraphyFactory {
         @Override public void onGlobalLayout() {
             final Toolbar toolbar = mToolbarReference.get();
             final Context context = mContextRef.get();
-            final CalligraphyFactory factory = mCalligraphyFactory.get();
             if (toolbar == null) return;
-            if (factory == null || context == null) {
+            if (mCalligraphyFactory == null || context == null) {
+                toolbar.setSubtitle(originalSubTitle);
                 removeSelf(toolbar);
                 return;
             }
@@ -233,7 +233,7 @@ class CalligraphyFactory {
             if (childCount != 0) {
                 // Process children, defer draw as it has set the typeface.
                 for (int i = 0; i < childCount; i++) {
-                    factory.onViewCreated(toolbar.getChildAt(i), context, null);
+                    mCalligraphyFactory.onViewCreated(toolbar.getChildAt(i), context, null);
                 }
             }
             removeSelf(toolbar);
