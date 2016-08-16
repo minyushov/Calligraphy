@@ -1,27 +1,40 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+	compileSdkVersion 24
+	buildToolsVersion "24.0.1"
 
-    defaultConfig {
-        minSdkVersion 7
-        targetSdkVersion 24
-        versionCode project.ext.versionCodeInt
-        versionName version
-        consumerProguardFiles 'consumer-proguard-rules.txt'
-    }
+	defaultConfig {
+		minSdkVersion 7
+		targetSdkVersion 24
+		versionCode 24
+		versionName "2.2.1"
+		consumerProguardFiles 'consumer-proguard-rules.txt'
+	}
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'consumer-proguard-rules.txt'
-        }
-    }
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'consumer-proguard-rules.txt'
+		}
+	}
+
+	lintOptions {
+		abortOnError false
+	}
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:24.0.0'
+	compile 'com.android.support:appcompat-v7:24.1.1'
 }
 
-apply from: rootProject.file('gradle/deploy.gradle')
+publish {
+	repoName = 'calligraphy'
+	userOrg = 'minyushov'
+	groupId = 'com.minyushov.calligraphy'
+	artifactId = 'calligraphy'
+	version = '2.2.1'
+	description = 'Forg of the Calligraphy library for Android.'
+	website = 'https://github.com/minyushov/Calligraphy'
+}
