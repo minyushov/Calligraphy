@@ -1,10 +1,42 @@
+ext {
+	androidBuildToolsVersion = "24.0.3"
+	androidCompileSdkVersion = 24
+	androidTargetSdkVersion = 24
+	androidMinSdkVersion = 9
+	androidAppCompatVersion = "24.2.1"
+
+	bintrayRepo = 'calligraphy'
+	bintrayName = 'calligraphy'
+
+	publishedGroupId = 'com.minyushov.calligraphy'
+	libraryName = 'calligraphy'
+	artifact = 'calligraphy'
+
+	libraryDescription = 'Fork of the Calligraphy library for Android.'
+
+	siteUrl = 'https://github.com/minyushov/Calligraphy'
+	gitUrl = 'https://github.com/minyushov/Calligraphy.git'
+	githubRepository = 'minyushov/Calligraphy'
+
+	libraryVersion = '2.2.2'
+
+	developerId = 'minyushov'
+	developerName = 'Semyon Minyushov'
+	developerEmail = 'semikmsv@gmail.com'
+
+	licenseName = 'The Apache Software License, Version 2.0'
+	licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+	allLicenses = ["Apache-2.0"]
+}
+
 buildscript {
 	repositories {
 		jcenter()
 	}
 	dependencies {
 		classpath 'com.android.tools.build:gradle:2.2.0'
-		classpath 'com.novoda:bintray-release:0.3.4'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
 	}
 }
 

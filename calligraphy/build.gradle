@@ -1,15 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
-	compileSdkVersion 24
-	buildToolsVersion "24.0.3"
+	compileSdkVersion androidCompileSdkVersion
+	buildToolsVersion androidBuildToolsVersion
 
 	defaultConfig {
-		minSdkVersion 9
-		targetSdkVersion 24
-		versionCode 24
-		versionName "2.2.2"
+		minSdkVersion androidMinSdkVersion
+		targetSdkVersion androidTargetSdkVersion
 		consumerProguardFiles 'consumer-proguard-rules.txt'
 	}
 
@@ -26,15 +23,8 @@ android {
 }
 
 dependencies {
-	compile 'com.android.support:appcompat-v7:24.2.1'
+	compile "com.android.support:appcompat-v7:$androidAppCompatVersion"
 }
 
-publish {
-	repoName = 'calligraphy'
-	userOrg = 'minyushov'
-	groupId = 'com.minyushov.calligraphy'
-	artifactId = 'calligraphy'
-	version = '2.2.2'
-	description = 'Forg of the Calligraphy library for Android.'
-	website = 'https://github.com/minyushov/Calligraphy'
-}
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'

@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 24
-	buildToolsVersion "24.0.3"
+	compileSdkVersion androidCompileSdkVersion
+	buildToolsVersion androidBuildToolsVersion
 
 	defaultConfig {
-		minSdkVersion 9
-		targetSdkVersion 24
+		minSdkVersion androidMinSdkVersion
+		targetSdkVersion androidTargetSdkVersion
 		versionCode 1
 		versionName "1.0"
 	}
@@ -20,8 +20,7 @@ android {
 
 dependencies {
 	compile project(':calligraphy')
-	compile 'com.android.support:support-v4:24.2.1'
-	compile 'com.android.support:appcompat-v7:24.2.1'
+	compile "com.android.support:appcompat-v7:$androidAppCompatVersion"
 
 	compile 'com.jakewharton:butterknife:8.2.1'
 
