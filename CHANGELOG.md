@@ -1,5 +1,11 @@
 #Changelog
 
+#2.2.2 (01/10/2016)
+- Custom font is now applied when it's set in the android:textAppearance inside a theme style.
+
+#2.2.1 (16/08/2016)
+- Fix incorrect behaviour of the ToolbarLayoutListener where an empty subtitle of a Toolbar becomes visible.
+
 #2.2.0 (05/04/2016)
 - Added AppCompat Styles (AppCompatTextView will now pickup textViewStyle etc). Thanks @paul-turner
 - Fix for Toolbar not inflating `TextView`s upfront.

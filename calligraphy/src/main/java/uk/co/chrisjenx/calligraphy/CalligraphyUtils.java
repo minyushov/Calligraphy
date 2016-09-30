@@ -260,6 +260,29 @@ public final class CalligraphyUtils {
         final TypedArray typedArray = theme.obtainStyledAttributes(value.resourceId, attributeId);
         try {
             String font = typedArray.getString(0);
+            if (TextUtils.isEmpty(font)) {
+                int textAppearanceId = -1;
+                final TypedArray typedArrayAttr = theme.obtainStyledAttributes(value.resourceId, ANDROID_ATTR_TEXT_APPEARANCE);
+                if (typedArrayAttr != null) {
+                    try {
+                        textAppearanceId = typedArrayAttr.getResourceId(0, -1);
+                    } catch (Exception ignored) {
+                        // Failed for some reason
+                    } finally {
+                        typedArrayAttr.recycle();
+                    }
+                }
+                final TypedArray textAppearanceAttrs = context.obtainStyledAttributes(textAppearanceId, attributeId);
+                if (textAppearanceAttrs != null) {
+                    try {
+                        font = textAppearanceAttrs.getString(0);
+                    } catch (Exception ignore) {
+                        // Failed for some reason.
+                    } finally {
+                        textAppearanceAttrs.recycle();
+                    }
+                }
+            }
             return font;
         } catch (Exception ignore) {
             // Failed for some reason.
