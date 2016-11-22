@@ -181,10 +181,10 @@ public final class CalligraphyUtils {
      * @param attributeId if -1 returns null.
      * @return null if attribute is not defined or found in the Style
      */
-    static String pullFontPathFromStyle(Context context, AttributeSet attrs, int[] attributeId) {
+    static String pullFontPathFromStyle(Context context, AttributeSet attrs, int[] attributeId, int defStyleAttr) {
         if (attributeId == null || attrs == null)
             return null;
-        final TypedArray typedArray = context.obtainStyledAttributes(attrs, attributeId);
+        final TypedArray typedArray = context.obtainStyledAttributes(attrs, attributeId, defStyleAttr, 0);
         if (typedArray != null) {
             try {
                 // First defined attribute
@@ -209,13 +209,13 @@ public final class CalligraphyUtils {
      * @param attributeId if -1 returns null.
      * @return returns null if attribute is not defined or if no TextAppearance is found.
      */
-    static String pullFontPathFromTextAppearance(final Context context, AttributeSet attrs, int[] attributeId) {
+    static String pullFontPathFromTextAppearance(final Context context, AttributeSet attrs, int[] attributeId, int defStyleAttr) {
         if (attributeId == null || attrs == null) {
             return null;
         }
 
         int textAppearanceId = -1;
-        final TypedArray typedArrayAttr = context.obtainStyledAttributes(attrs, ANDROID_ATTR_TEXT_APPEARANCE);
+        final TypedArray typedArrayAttr = context.obtainStyledAttributes(attrs, ANDROID_ATTR_TEXT_APPEARANCE, defStyleAttr, 0);
         if (typedArrayAttr != null) {
             try {
                 textAppearanceId = typedArrayAttr.getResourceId(0, -1);
