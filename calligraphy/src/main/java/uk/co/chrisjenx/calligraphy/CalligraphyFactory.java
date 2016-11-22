@@ -129,11 +129,11 @@ class CalligraphyFactory {
             // Since we're not using namespace it's a little bit tricky
 
             // Check xml attrs, style attrs and text appearance for font path
-            String textViewFont = resolveFontPath(context, attrs);
+			final int[] styleForTextView = getStyleForTextView((TextView) view);
+			String textViewFont = resolveFontPath(context, attrs, styleForTextView[0]);
 
             // Try theme attributes
             if (TextUtils.isEmpty(textViewFont)) {
-                final int[] styleForTextView = getStyleForTextView((TextView) view);
                 if (styleForTextView[1] != -1)
                     textViewFont = CalligraphyUtils.pullFontPathFromTheme(context, styleForTextView[0], styleForTextView[1], mAttributeId);
                 else
@@ -155,13 +155,13 @@ class CalligraphyFactory {
 
         // Try to set typeface for custom views using interface method or via reflection if available
         if (view instanceof HasTypeface) {
-            Typeface typeface = getDefaultTypeface(context, resolveFontPath(context, attrs));
+            Typeface typeface = getDefaultTypeface(context, resolveFontPath(context, attrs, 0));
             if (typeface != null) {
                 ((HasTypeface) view).setTypeface(typeface);
             }
         } else if (CalligraphyConfig.get().isCustomViewTypefaceSupport() && CalligraphyConfig.get().isCustomViewHasTypeface(view)) {
             final Method setTypeface = ReflectionUtils.getMethod(view.getClass(), "setTypeface");
-            String fontPath = resolveFontPath(context, attrs);
+            String fontPath = resolveFontPath(context, attrs, 0);
             Typeface typeface = getDefaultTypeface(context, fontPath);
             if (setTypeface != null && typeface != null) {
                 ReflectionUtils.invokeMethod(view, setTypeface, typeface);
@@ -183,18 +183,18 @@ class CalligraphyFactory {
     /**
      * Resolving font path from xml attrs, style attrs or text appearance
      */
-    private String resolveFontPath(Context context, AttributeSet attrs) {
+    private String resolveFontPath(Context context, AttributeSet attrs, int styleAttr) {
         // Try view xml attributes
         String textViewFont = CalligraphyUtils.pullFontPathFromView(context, attrs, mAttributeId);
 
         // Try view style attributes
         if (TextUtils.isEmpty(textViewFont)) {
-            textViewFont = CalligraphyUtils.pullFontPathFromStyle(context, attrs, mAttributeId);
+            textViewFont = CalligraphyUtils.pullFontPathFromStyle(context, attrs, mAttributeId, styleAttr);
         }
 
         // Try View TextAppearance
         if (TextUtils.isEmpty(textViewFont)) {
-            textViewFont = CalligraphyUtils.pullFontPathFromTextAppearance(context, attrs, mAttributeId);
+            textViewFont = CalligraphyUtils.pullFontPathFromTextAppearance(context, attrs, mAttributeId, styleAttr);
         }
 
         return textViewFont;
