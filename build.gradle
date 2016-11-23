@@ -18,7 +18,7 @@ ext {
 	gitUrl = 'https://github.com/minyushov/Calligraphy.git'
 	githubRepository = 'minyushov/Calligraphy'
 
-	libraryVersion = '2.2.2'
+	libraryVersion = '2.2.3'
 
 	developerId = 'minyushov'
 	developerName = 'Semyon Minyushov'
