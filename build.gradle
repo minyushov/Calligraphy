@@ -1,9 +1,9 @@
 ext {
-	androidBuildToolsVersion = "25.0.1"
-	androidCompileSdkVersion = 24
-	androidTargetSdkVersion = 24
-	androidMinSdkVersion = 9
-	androidAppCompatVersion = "25.0.1"
+	androidBuildToolsVersion = "27.0.0"
+	androidCompileSdkVersion = 26
+	androidTargetSdkVersion = 26
+	androidMinSdkVersion = 14
+	androidAppCompatVersion = "26.1.0"
 
 	bintrayRepo = 'calligraphy'
 	bintrayName = 'calligraphy'
@@ -32,16 +32,18 @@ ext {
 buildscript {
 	repositories {
 		jcenter()
+		google()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.2.2'
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
-		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+		classpath 'com.android.tools.build:gradle:3.0.0'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+		classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
 	}
 }
 
 allprojects {
 	repositories {
 		jcenter()
+		google()
 	}
 }
