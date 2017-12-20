@@ -206,8 +206,8 @@ class CalligraphyFactory {
         // The toolbar inflates both the title and the subtitle views lazily but luckily they do it
         // synchronously when you set a title and a subtitle programmatically.
         // So we set a title and a subtitle to something, then get the views, then revert.
-        view.setTitle(" ");
-        view.setSubtitle(" ");
+        view.setTitle("uk.co.chrisjenx.calligraphy:toolbar_title");
+        view.setSubtitle("uk.co.chrisjenx.calligraphy:toolbar_subtitle");
 
         // Iterate through the children to run post inflation on them
         final int childCount = view.getChildCount();
