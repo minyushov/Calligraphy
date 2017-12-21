@@ -19,12 +19,12 @@ Include the dependency [Download (.aar)](http://search.maven.org/remotecontent?f
 allprojects {
     repositories {
         // ...
-        maven { url 'https://dl.bintray.com/minyushov/calligraphy' }
+        maven { url 'https://dl.bintray.com/minyushov/android' }
     }
 }
 
 dependencies {
-    compile 'com.minyushov.calligraphy:calligraphy:2.3.0'
+    compile 'com.minyushov.android:calligraphy:2.3.0'
 }
 ```
 ### Add Fonts
