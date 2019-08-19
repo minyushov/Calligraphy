@@ -1,6 +1,11 @@
 Calligraphy
 ===========
 
+DEPRECATED: Please use Appcompat from AndroidX
+----------
+
+
+
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Calligraphy-blue.svg?style=flat)](http://android-arsenal.com/details/1/163)
 
 Custom fonts in Android an OK way.
